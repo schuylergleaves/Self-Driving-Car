@@ -1,0 +1,45 @@
+Current Tasks
+    1. Create Map Structure
+        implement creation of walls by allowing user to hold down their mouse button
+    2. Draw Map
+    3. Implement collisions between car and wall
+
+
+Objective
+    This project will initially be a top down driving simulator, where you must stay in between the lines of the road,
+    as you lose health if you crash into the walls. The user will be able to first build the track, adding a variety of
+    different objects. Then, they will be able to drive the course themselves. Then, I will create a neural network in
+    which an AI will learn how to successfully drive the car through the course.
+
+Object Structure
+    Config
+    Game
+        State
+        Car
+        Map
+            Wall
+            Cone (+ other objects tbd)
+        AI
+        Neural Network
+
+Object Descriptions
+    Config
+        list of all constants for the game/game launcher
+
+    Game
+        passes user input to alter the car/map, and then draws
+        will eventually pass the AI input to the map
+
+    Map
+        Contains all of the obstacles which will be drawn (ie: walls, cones, etc.)
+
+    State
+        Map Creation, Driving, Paused
+
+    AI
+        TBD
+
+    Neural Network
+        TBD
+
+

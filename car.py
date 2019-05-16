@@ -7,13 +7,15 @@ from math import tan, radians, degrees
 
 
 class Car:
+    # constants - car properties
     MAX_ACCELERATION   = 5.0
     MAX_STEERING_ANGLE = 30
     CHASSIS_LENGTH     = 4
 
-    ACCELERATION_MODIFIER   = 1.0
+    # constants - physics properties
+    ACCELERATION_MODIFIER   = 2.0
     STEERING_ANGLE_MODIFIER = 15
-    BRAKE_MODIFIER          = 10
+    BRAKE_MODIFIER          = 20
 
     def __init__(self, x, y):
         self.position = Vector2(x, y)
@@ -25,6 +27,7 @@ class Car:
     def update(self, dt):
         self.velocity += Vector2(self.acceleration * dt, 0)
 
+        # derivation for turning radius and angular velocity formula can be found in citation at top
         if self.steering_angle is not 0:
             turning_radius = self.CHASSIS_LENGTH / tan(radians(self.steering_angle))
             angular_velocity = self.velocity.x / turning_radius
