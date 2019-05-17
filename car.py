@@ -2,6 +2,7 @@
 # Created referencing http://rmgi.blog/pygame-2d-car-tutorial.html
 # @author Schuyler Gleaves - 5/16/2019
 # ----------------------------------------------------------------
+import pygame
 from pygame.math import Vector2
 from math import tan, radians, degrees
 
@@ -17,14 +18,19 @@ class Car:
     STEERING_ANGLE_MODIFIER = 15
     BRAKE_MODIFIER          = 20
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, car_image):
         self.position = Vector2(x, y)
         self.velocity = Vector2(0.0, 0.0)
         self.angle = 0
         self.acceleration = 0
         self.steering_angle = 0
+        self.car_image = car_image
+        self.crashed = False
 
     def update(self, dt):
+        if self.crashed:
+            return
+
         self.velocity += Vector2(self.acceleration * dt, 0)
 
         # derivation for turning radius and angular velocity formula can be found in citation at top
@@ -58,3 +64,16 @@ class Car:
     def brake(self, dt):
         self.velocity.x = max(0, self.velocity.x - self.BRAKE_MODIFIER * dt)
 
+    def has_crashed(self):
+        return self.crashed
+
+    def crash(self):
+        self.crashed = True
+        self.acceleration = 0
+        self.velocity = 0
+
+    def get_rotated_image(self):
+        return pygame.transform.rotate(self.car_image, self.angle)
+
+    def get_rect(self):
+        return self.get_rotated_image().get_rect()

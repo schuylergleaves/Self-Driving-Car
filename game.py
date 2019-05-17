@@ -3,6 +3,7 @@ import config
 import os
 from pygame.math import Vector2
 from car import Car
+from map import Map
 
 
 class Game:
@@ -11,31 +12,55 @@ class Game:
         self.preload_images()
 
         self.screen = pygame.display.set_mode(config.SCREEN_SIZE)
-        self.clock = pygame.time.Clock()
-        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y)
         self.text_font = pygame.font.SysFont("Courier", 30)
+        self.clock = pygame.time.Clock()
+
+        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, self.car_image)
+        self.map = Map()
         self.active = True
         self.dt = None
 
     def run(self):
         while self.active:
+            # handling special events
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.shutdown()
 
+            # initial polling for data
             delta_time = self.get_time_since_last_frame()
 
+            # handle all user input
+            self.handle_user_input_for_map()
             self.handle_user_input_for_car(delta_time)
+
+            # updates to any objects
             self.car.update(delta_time)
+            self.handle_car_collisions()
 
+            # drawing
             self.draw_background()
+            self.draw_map()
             self.draw_car()
-            self.display_text("Car Velocity: %s" % self.car.velocity, (5, 5))
+            self.display_text("Car Velocity: %s" % self.car.velocity, (5, 10))
+            self.display_text("Car has crashed: %s" % self.car.has_crashed(), (5, 40))
 
+            # rendering
             self.render_ui()
             self.limit_fps(config.FPS)
 
+    def handle_car_collisions(self):
+        if self.map.has_collision_with(self.car):
+            self.car.crash()
+
+    def handle_user_input_for_map(self):
+        if pygame.mouse.get_pressed()[0]:
+            self.add_wall_at_mouse_pos()
+
     def handle_user_input_for_car(self, dt):
+        if self.car.has_crashed():
+            return
+
         pressed = pygame.key.get_pressed()
 
         if pressed[pygame.K_w]:
@@ -55,8 +80,13 @@ class Game:
         if pressed[pygame.K_SPACE]:
             self.car.brake(dt)
 
+    def draw_map(self):
+        for wall in self.map.get_wall_list():
+            pygame.draw.rect(self.screen, config.WHITE, wall.get_rect())
+
     def draw_car(self):
-        rotated_img = pygame.transform.rotate(self.car_image, self.car.angle)
+        # rotated_img = pygame.transform.rotate(self.car_image, self.car.angle)
+        rotated_img = self.car.get_rotated_image()
         rect = rotated_img.get_rect()
 
         # conversion from car pos to screen space
@@ -66,9 +96,13 @@ class Game:
     def draw_background(self):
         self.screen.fill(config.BLACK)
 
+    def add_wall_at_mouse_pos(self):
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        self.map.create_wall(mouse_x, mouse_y)
+
     def display_text(self, text, position):
         text = self.text_font.render(text, True, config.WHITE)
-        self.screen.blit(text, (10, 10))
+        self.screen.blit(text, position)
 
     def preload_images(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
