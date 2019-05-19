@@ -1,10 +1,11 @@
 import pygame
-import config
-from car import Car
-from map import Map
+from data import config
+from core.car.car import Car
+from core.map.map import Map
 
 
 class Game:
+    # ----- INITIALIZATION -----
     def __init__(self):
         pygame.init()
 
@@ -18,6 +19,8 @@ class Game:
         self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE)
         self.map = Map()
 
+
+    # ----- MAIN GAME LOOP -----
     def run(self):
         while self.active:
             for event in pygame.event.get():
@@ -30,13 +33,20 @@ class Game:
             self.handle_input()
             self.handle_collisions()
 
-            self.draw_game()
+            self.draw()
 
             self.limit_fps(config.FPS)
 
+    def shutdown(self):
+        self.active = False
+
+
+    # ----- UPDATING OBJECTS -----
     def update_internal_game_data(self):
         self.delta_time = self.get_time_since_last_frame()
 
+
+    # ----- HANDLING INPUT / OBJECTS -----
     def handle_input(self):
         self.handle_user_input_for_game_state()
         self.handle_user_input_for_map()
@@ -87,7 +97,23 @@ class Game:
         elif self.map.entered_finish_line(self.car):
             self.car.finish()
 
-    def draw_game(self):
+    def add_wall_at_mouse_pos(self):
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        self.map.add_wall(mouse_x, mouse_y)
+
+    def add_finish_at_mouse_pos(self):
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        self.map.add_finish_line(mouse_x, mouse_y)
+
+    def reset_car(self):
+        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE)
+
+    def reset_map(self):
+        self.map = Map()
+
+
+    # ----- DRAWING -----
+    def draw(self):
         self.draw_background()
         self.draw_map()
         self.draw_car()
@@ -111,20 +137,6 @@ class Game:
     def draw_background(self):
         self.screen.fill(config.GREY)
 
-    def add_wall_at_mouse_pos(self):
-        mouse_x, mouse_y = pygame.mouse.get_pos()
-        self.map.add_wall(mouse_x, mouse_y)
-
-    def add_finish_at_mouse_pos(self):
-        mouse_x, mouse_y = pygame.mouse.get_pos()
-        self.map.add_finish_line(mouse_x, mouse_y)
-
-    def reset_car(self):
-        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE)
-
-    def reset_map(self):
-        self.map = Map()
-
     def display_text(self, text, position):
         text = self.text_font.render(text, True, config.WHITE)
         self.screen.blit(text, position)
@@ -137,6 +149,3 @@ class Game:
 
     def limit_fps(self, fps):
         self.clock.tick(fps)
-
-    def shutdown(self):
-        self.active = False

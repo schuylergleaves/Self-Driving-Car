@@ -4,6 +4,7 @@
 import pygame
 from pygame.math import Vector2
 from math import tan, radians, degrees
+from .state import State
 import os
 
 
@@ -21,9 +22,7 @@ class Car:
     COLLISION_OFFSET_VERT   = 0.8
     COLLISION_OFFSET_HORIZ  = 0.8
 
-    # --------------
-    # INITIALIZATION
-    # --------------
+    # ----- INITIALIZATION -----
     def __init__(self, x, y, size):
         self.position = Vector2(x, y)
         self.velocity = Vector2(0.0, 0.0)
@@ -31,22 +30,21 @@ class Car:
         self.angle = 0
         self.acceleration = 0
         self.steering_angle = 0
-        self.crashed = False
-        self.finished = False
+        self.state = State.RUNNING
         self.preload_image()
 
     def preload_image(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        image_path = os.path.join(current_dir, "images/car.png")
+        image_path = os.path.join(current_dir, "../../assets/car.png")
         self.image = pygame.image.load(image_path)
         self.image = pygame.transform.scale(self.image, self.size)
 
 
-    # -----------------
-    # PHYSICS / ACTIONS
-    # -----------------
+    # ----- PHYSICS / ACTIONS -----
     def update(self, dt):
-        if self.crashed or self.finished:
+        if self.state is not State.RUNNING:
+            self.velocity = 0
+            self.acceleration = 0
             return
 
         # apply acceleration to velocity, limit to max
@@ -87,29 +85,21 @@ class Car:
         self.velocity.x = max(0, self.velocity.x - self.BRAKE_MODIFIER * dt)
 
 
-    # --------------
-    # HANDLING STATE
-    # --------------
+    # ----- HANDLING STATE -----
     def has_crashed(self):
-        return self.crashed
-
-    def crash(self):
-        self.crashed = True
-        self.acceleration = 0
-        self.velocity = 0
+        return self.state == State.CRASHED
 
     def has_finished(self):
-        return self.finished
+        return self.state == State.FINISHED
+
+    def crash(self):
+        self.state = State.CRASHED
 
     def finish(self):
-        self.finished = True
-        self.acceleration = 0
-        self.velocity = 0
+        self.state = State.FINISHED
 
 
-    # --------------------
-    # GRAPHICS / RENDERING
-    # --------------------
+    # ----- GRAPHICS -----
     def get_image(self):
         # rotated to account for current angle of car
         return pygame.transform.rotate(self.image, self.angle)

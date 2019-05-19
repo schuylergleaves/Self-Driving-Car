@@ -1,5 +1,5 @@
-from wall import Wall
-from finish_line import FinishLine
+from core.map.entities.wall import Wall
+from core.map.entities.finish_line import FinishLine
 
 
 class Map:
