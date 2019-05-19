@@ -1,6 +1,6 @@
 Current Tasks
-    1. More accurate collision detection
-    2. Create start and finish zones on map
+    1. add ability to restart
+    2. create state system for car
     3. come up with basic AI input structure to have an AI control the car
     4. Implement Neural Network into AI
 
@@ -16,8 +16,7 @@ Object Structure
         State
         Car
         Map
-            Wall
-            Cone (+ other objects tbd)
+            Wall (+ other objects tdb)
         AI
         Neural Network
 

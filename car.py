@@ -18,7 +18,12 @@ class Car:
     ACCELERATION_MODIFIER   = 30.0
     STEERING_ANGLE_MODIFIER = 5
     BRAKE_MODIFIER          = 300
+    COLLISION_OFFSET_VERT   = 0.8
+    COLLISION_OFFSET_HORIZ  = 0.8
 
+    # --------------
+    # INITIALIZATION
+    # --------------
     def __init__(self, x, y, size):
         self.position = Vector2(x, y)
         self.velocity = Vector2(0.0, 0.0)
@@ -27,11 +32,21 @@ class Car:
         self.acceleration = 0
         self.steering_angle = 0
         self.crashed = False
-
+        self.finished = False
         self.preload_image()
 
+    def preload_image(self):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        image_path = os.path.join(current_dir, "images/car.png")
+        self.image = pygame.image.load(image_path)
+        self.image = pygame.transform.scale(self.image, self.size)
+
+
+    # -----------------
+    # PHYSICS / ACTIONS
+    # -----------------
     def update(self, dt):
-        if self.crashed:
+        if self.crashed or self.finished:
             return
 
         # apply acceleration to velocity, limit to max
@@ -71,6 +86,10 @@ class Car:
     def brake(self, dt):
         self.velocity.x = max(0, self.velocity.x - self.BRAKE_MODIFIER * dt)
 
+
+    # --------------
+    # HANDLING STATE
+    # --------------
     def has_crashed(self):
         return self.crashed
 
@@ -79,6 +98,18 @@ class Car:
         self.acceleration = 0
         self.velocity = 0
 
+    def has_finished(self):
+        return self.finished
+
+    def finish(self):
+        self.finished = True
+        self.acceleration = 0
+        self.velocity = 0
+
+
+    # --------------------
+    # GRAPHICS / RENDERING
+    # --------------------
     def get_image(self):
         # rotated to account for current angle of car
         return pygame.transform.rotate(self.image, self.angle)
@@ -92,8 +123,10 @@ class Car:
 
         return adjusted_rect
 
-    def preload_image(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        image_path = os.path.join(current_dir, "images/car.png")
-        self.image = pygame.image.load(image_path)
-        self.image = pygame.transform.scale(self.image, self.size)
+    def get_collision_rect(self):
+        """ returns a slightly smaller rectangle to account for image having whitespace"""
+        rect = self.get_rect()
+        collision_rect = pygame.Rect(rect.x, rect.y,
+                                     rect.width * self.COLLISION_OFFSET_HORIZ,
+                                     rect.height * self.COLLISION_OFFSET_VERT)
+        return collision_rect
