@@ -41,12 +41,12 @@ class Game:
         self.active = False
 
 
-    # ----- UPDATING OBJECTS -----
+    # ----- INTERNAL GAME STATE -----
     def update_internal_game_data(self):
         self.delta_time = self.get_time_since_last_frame()
 
 
-    # ----- HANDLING INPUT / OBJECTS -----
+    # ----- HANDLING INPUT -----
     def handle_input(self):
         self.handle_user_input_for_game_state()
         self.handle_user_input_for_map()
@@ -97,6 +97,8 @@ class Game:
         elif self.map.entered_finish_line(self.car):
             self.car.finish()
 
+
+    # ----- OBJECT MANIPULATION -----
     def add_wall_at_mouse_pos(self):
         mouse_x, mouse_y = pygame.mouse.get_pos()
         self.map.add_wall(mouse_x, mouse_y)

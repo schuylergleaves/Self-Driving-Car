@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1f72ba5-1ddf-409f-bbb6-7c2c3a8dbdb7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/car/state.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/car/car.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/overview" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/overview" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finish_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/map/entities/finish_line.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/game/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/car.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/car.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/launcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/launcher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/map/map.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wall.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/map/entities/wall.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/game/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/game/game.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,11 +15,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/documentation/overview">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret column="13" selection-start-column="13" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/game/game.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="354">
+              <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#638#1009#0" />
+                <element signature="e#1043#1062#0" />
+                <element signature="e#1149#1199#0" />
+                <element signature="e#1281#1402#0" />
+                <element signature="e#1460#1619#0" />
+                <element signature="e#1670#1830#0" />
+                <element signature="e#1881#2448#0" />
+                <element signature="e#2491#2639#0" />
+                <element signature="e#2717#2802#0" />
+                <element signature="e#2851#2943#0" />
+                <element signature="e#2978#3055#0" />
+                <element signature="e#3090#3106#0" />
+                <element signature="e#3132#3472#0" />
+                <element signature="e#3506#3748#0" />
+                <element signature="e#3782#3841#0" />
+                <element signature="e#3882#3911#0" />
+                <element signature="e#3965#4060#0" />
+                <element signature="e#4111#4146#0" />
+                <element signature="e#4181#4202#0" />
+                <element signature="e#4242#4262#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,12 +121,32 @@
             <path>
               <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
               <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
               <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
-              <item name="documentation" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="car" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+              <item name="entities" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -189,7 +230,7 @@
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49858758" visible="true" weight="0.11881188" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49858758" visible="true" weight="0.11881188" />
       <window_info id="Structure" order="1" show_stripe_button="false" sideWeight="0.50141245" side_tool="true" weight="0.24950495" />
       <window_info id="Favorites" order="2" show_stripe_button="false" sideWeight="0.50141245" side_tool="true" weight="0.24950495" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -286,9 +327,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/game/game_utils.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/core/game/game_utils.py" />
     <entry file="file://$PROJECT_DIR$/core/car/car.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1479">
@@ -306,41 +345,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/game/game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="45" column="58" lean-forward="true" selection-start-line="45" selection-start-column="58" selection-end-line="45" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#142#542#0" />
-            <element signature="e#571#942#0" />
-            <element signature="e#1054#1073#0" />
-            <element signature="e#993#1043#0" />
-            <element signature="e#1081#1202#0" />
-            <element signature="e#1260#1419#0" />
-            <element signature="e#1470#1630#0" />
-            <element signature="e#1681#2248#0" />
-            <element signature="e#2291#2439#0" />
-            <element signature="e#2630#2715#0" />
-            <element signature="e#2764#2856#0" />
-            <element signature="e#2891#2968#0" />
-            <element signature="e#3003#3019#0" />
-            <element signature="e#2469#2809#0" />
-            <element signature="e#2843#3085#0" />
-            <element signature="e#3119#3178#0" />
-            <element signature="e#3219#3248#0" />
-            <element signature="e#3738#3833#0" />
-            <element signature="e#3884#3919#0" />
-            <element signature="e#3954#3975#0" />
-            <element signature="e#4015#4035#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/documentation/overview">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="13" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/game/game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#638#1009#0" />
+            <element signature="e#1043#1062#0" />
+            <element signature="e#1149#1199#0" />
+            <element signature="e#1281#1402#0" />
+            <element signature="e#1460#1619#0" />
+            <element signature="e#1670#1830#0" />
+            <element signature="e#1881#2448#0" />
+            <element signature="e#2491#2639#0" />
+            <element signature="e#2717#2802#0" />
+            <element signature="e#2851#2943#0" />
+            <element signature="e#2978#3055#0" />
+            <element signature="e#3090#3106#0" />
+            <element signature="e#3132#3472#0" />
+            <element signature="e#3506#3748#0" />
+            <element signature="e#3782#3841#0" />
+            <element signature="e#3882#3911#0" />
+            <element signature="e#3965#4060#0" />
+            <element signature="e#4111#4146#0" />
+            <element signature="e#4181#4202#0" />
+            <element signature="e#4242#4262#0" />
+          </folding>
         </state>
       </provider>
     </entry>
