@@ -27,30 +27,31 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/game/game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+            <state relative-caret-position="219">
+              <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-                <element signature="e#638#1009#0" />
+                <element signature="e#175#575#0" />
                 <element signature="e#1043#1062#0" />
-                <element signature="e#1149#1199#0" />
-                <element signature="e#1281#1402#0" />
-                <element signature="e#1460#1619#0" />
-                <element signature="e#1670#1830#0" />
-                <element signature="e#1881#2448#0" />
-                <element signature="e#2491#2639#0" />
-                <element signature="e#2717#2802#0" />
-                <element signature="e#2851#2943#0" />
-                <element signature="e#2978#3055#0" />
-                <element signature="e#3090#3106#0" />
-                <element signature="e#3132#3472#0" />
-                <element signature="e#3506#3748#0" />
-                <element signature="e#3782#3841#0" />
-                <element signature="e#3882#3911#0" />
-                <element signature="e#3965#4060#0" />
-                <element signature="e#4111#4146#0" />
-                <element signature="e#4181#4202#0" />
-                <element signature="e#4242#4262#0" />
+                <element signature="e#1152#1202#0" />
+                <element signature="e#1253#1288#0" />
+                <element signature="e#1277#1342#0" />
+                <element signature="e#1385#1533#0" />
+                <element signature="e#1580#1665#0" />
+                <element signature="e#1714#1806#0" />
+                <element signature="e#1841#1918#0" />
+                <element signature="e#1953#1969#0" />
+                <element signature="e#1274#1395#0" />
+                <element signature="e#1453#1612#0" />
+                <element signature="e#2406#2566#0" />
+                <element signature="e#1874#2441#0" />
+                <element signature="e#3265#3640#0" />
+                <element signature="e#3538#3780#0" />
+                <element signature="e#3814#3873#0" />
+                <element signature="e#3914#3943#0" />
+                <element signature="e#3997#4092#0" />
+                <element signature="e#4213#4234#0" />
+                <element signature="e#4274#4294#0" />
               </folding>
             </state>
           </provider>
@@ -95,6 +96,7 @@
         <option value="$PROJECT_DIR$/core/car/state.py" />
         <option value="$PROJECT_DIR$/core/car/car.py" />
         <option value="$PROJECT_DIR$/documentation/overview" />
+        <option value="$PROJECT_DIR$/core/game/input_handler.py" />
         <option value="$PROJECT_DIR$/core/game/game.py" />
       </list>
     </option>
@@ -229,8 +231,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49858758" visible="true" weight="0.11881188" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49858758" visible="true" weight="0.11881188" />
       <window_info id="Structure" order="1" show_stripe_button="false" sideWeight="0.50141245" side_tool="true" weight="0.24950495" />
       <window_info id="Favorites" order="2" show_stripe_button="false" sideWeight="0.50141245" side_tool="true" weight="0.24950495" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -352,32 +355,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/game/input_handler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/game/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+        <state relative-caret-position="219">
+          <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#638#1009#0" />
+            <element signature="e#175#575#0" />
             <element signature="e#1043#1062#0" />
-            <element signature="e#1149#1199#0" />
-            <element signature="e#1281#1402#0" />
-            <element signature="e#1460#1619#0" />
-            <element signature="e#1670#1830#0" />
-            <element signature="e#1881#2448#0" />
-            <element signature="e#2491#2639#0" />
-            <element signature="e#2717#2802#0" />
-            <element signature="e#2851#2943#0" />
-            <element signature="e#2978#3055#0" />
-            <element signature="e#3090#3106#0" />
-            <element signature="e#3132#3472#0" />
-            <element signature="e#3506#3748#0" />
-            <element signature="e#3782#3841#0" />
-            <element signature="e#3882#3911#0" />
-            <element signature="e#3965#4060#0" />
-            <element signature="e#4111#4146#0" />
-            <element signature="e#4181#4202#0" />
-            <element signature="e#4242#4262#0" />
+            <element signature="e#1152#1202#0" />
+            <element signature="e#1253#1288#0" />
+            <element signature="e#1277#1342#0" />
+            <element signature="e#1385#1533#0" />
+            <element signature="e#1580#1665#0" />
+            <element signature="e#1714#1806#0" />
+            <element signature="e#1841#1918#0" />
+            <element signature="e#1953#1969#0" />
+            <element signature="e#1274#1395#0" />
+            <element signature="e#1453#1612#0" />
+            <element signature="e#2406#2566#0" />
+            <element signature="e#1874#2441#0" />
+            <element signature="e#3265#3640#0" />
+            <element signature="e#3538#3780#0" />
+            <element signature="e#3814#3873#0" />
+            <element signature="e#3914#3943#0" />
+            <element signature="e#3997#4092#0" />
+            <element signature="e#4213#4234#0" />
+            <element signature="e#4274#4294#0" />
           </folding>
         </state>
       </provider>

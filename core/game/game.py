@@ -5,7 +5,6 @@ from core.map.map import Map
 
 
 class Game:
-    # ----- INITIALIZATION -----
     def __init__(self):
         pygame.init()
 
@@ -28,14 +27,9 @@ class Game:
                     self.shutdown()
 
             self.update_internal_game_data()
-            self.car.update(self.delta_time)
-
+            self.update_objects()
             self.handle_input()
-            self.handle_collisions()
-
             self.draw()
-
-            self.limit_fps(config.FPS)
 
     def shutdown(self):
         self.active = False
@@ -44,6 +38,35 @@ class Game:
     # ----- INTERNAL GAME STATE -----
     def update_internal_game_data(self):
         self.delta_time = self.get_time_since_last_frame()
+
+    def get_time_since_last_frame(self):
+        return self.clock.get_time() / 1000
+
+
+    # ----- OBJECT MANIPULATION -----
+    def update_objects(self):
+        self.car.update(self.delta_time)
+        self.handle_collisions()
+
+    def handle_collisions(self):
+        if self.map.collided_wall(self.car):
+            self.car.crash()
+        elif self.map.entered_finish_line(self.car):
+            self.car.finish()
+
+    def add_wall_at_mouse_pos(self):
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        self.map.add_wall(mouse_x, mouse_y)
+
+    def add_finish_at_mouse_pos(self):
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        self.map.add_finish_line(mouse_x, mouse_y)
+
+    def reset_car(self):
+        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE)
+
+    def reset_map(self):
+        self.map = Map()
 
 
     # ----- HANDLING INPUT -----
@@ -61,9 +84,11 @@ class Game:
             self.reset_map()
 
     def handle_user_input_for_map(self):
+        # left click
         if pygame.mouse.get_pressed()[0]:
             self.add_wall_at_mouse_pos()
 
+        # middle mouse btn
         if pygame.mouse.get_pressed()[1]:
             self.add_finish_at_mouse_pos()
 
@@ -91,28 +116,6 @@ class Game:
         if pressed[pygame.K_SPACE]:
             self.car.brake(dt)
 
-    def handle_collisions(self):
-        if self.map.collided_wall(self.car):
-            self.car.crash()
-        elif self.map.entered_finish_line(self.car):
-            self.car.finish()
-
-
-    # ----- OBJECT MANIPULATION -----
-    def add_wall_at_mouse_pos(self):
-        mouse_x, mouse_y = pygame.mouse.get_pos()
-        self.map.add_wall(mouse_x, mouse_y)
-
-    def add_finish_at_mouse_pos(self):
-        mouse_x, mouse_y = pygame.mouse.get_pos()
-        self.map.add_finish_line(mouse_x, mouse_y)
-
-    def reset_car(self):
-        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE)
-
-    def reset_map(self):
-        self.map = Map()
-
 
     # ----- DRAWING -----
     def draw(self):
@@ -125,6 +128,7 @@ class Game:
         self.display_text("Car has finished: %s" % self.car.has_finished(), (5, 70))
 
         self.render_ui()
+        self.limit_fps(config.FPS)
 
     def draw_map(self):
         for wall in self.map.get_walls():
@@ -142,9 +146,6 @@ class Game:
     def display_text(self, text, position):
         text = self.text_font.render(text, True, config.WHITE)
         self.screen.blit(text, position)
-
-    def get_time_since_last_frame(self):
-        return self.clock.get_time() / 1000
 
     def render_ui(self):
         pygame.display.flip()
