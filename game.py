@@ -1,7 +1,5 @@
 import pygame
 import config
-import os
-from pygame.math import Vector2
 from car import Car
 from map import Map
 
@@ -9,13 +7,12 @@ from map import Map
 class Game:
     def __init__(self):
         pygame.init()
-        self.preload_images()
 
         self.screen = pygame.display.set_mode(config.SCREEN_SIZE)
         self.text_font = pygame.font.SysFont("Courier", 30)
         self.clock = pygame.time.Clock()
 
-        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, self.car_image)
+        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE)
         self.map = Map()
         self.active = True
         self.dt = None
@@ -85,16 +82,10 @@ class Game:
             pygame.draw.rect(self.screen, config.WHITE, wall.get_rect())
 
     def draw_car(self):
-        # rotated_img = pygame.transform.rotate(self.car_image, self.car.angle)
-        rotated_img = self.car.get_rotated_image()
-        rect = rotated_img.get_rect()
-
-        # conversion from car pos to screen space
-        car_pos = (self.car.position * config.PIXELS_PER_UNIT) - Vector2(rect.width / 2, rect.height / 2)
-        self.screen.blit(rotated_img, (car_pos.x, car_pos.y))
+        self.screen.blit(self.car.get_image(), self.car.get_rect())
 
     def draw_background(self):
-        self.screen.fill(config.BLACK)
+        self.screen.fill(config.GREY)
 
     def add_wall_at_mouse_pos(self):
         mouse_x, mouse_y = pygame.mouse.get_pos()
@@ -103,11 +94,6 @@ class Game:
     def display_text(self, text, position):
         text = self.text_font.render(text, True, config.WHITE)
         self.screen.blit(text, position)
-
-    def preload_images(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        image_path = os.path.join(current_dir, "images/car.png")
-        self.car_image = pygame.image.load(image_path)
 
     def get_time_since_last_frame(self):
         return self.clock.get_time() / 1000

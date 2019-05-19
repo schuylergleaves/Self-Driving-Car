@@ -1,6 +1,8 @@
 Current Tasks
-    3. Implement collisions between car and wall
-
+    1. More accurate collision detection
+    2. Create start and finish zones on map
+    3. come up with basic AI input structure to have an AI control the car
+    4. Implement Neural Network into AI
 
 Objective
     This project will initially be a top down driving simulator, where you must stay in between the lines of the road,

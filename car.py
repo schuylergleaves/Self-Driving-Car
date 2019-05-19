@@ -1,37 +1,43 @@
 # ----------------------------------------------------------------
 # Created referencing http://rmgi.blog/pygame-2d-car-tutorial.html
-# @author Schuyler Gleaves - 5/16/2019
 # ----------------------------------------------------------------
 import pygame
 from pygame.math import Vector2
 from math import tan, radians, degrees
+import os
 
 
 class Car:
     # constants - car properties
-    MAX_ACCELERATION   = 5.0
+    MAX_ACCELERATION   = 80.0
     MAX_STEERING_ANGLE = 30
+    MAX_VELOCITY       = 500
     CHASSIS_LENGTH     = 4
 
-    # constants - physics properties
-    ACCELERATION_MODIFIER   = 2.0
-    STEERING_ANGLE_MODIFIER = 15
-    BRAKE_MODIFIER          = 20
+    # constants - physics modifiers
+    ACCELERATION_MODIFIER   = 30.0
+    STEERING_ANGLE_MODIFIER = 5
+    BRAKE_MODIFIER          = 300
 
-    def __init__(self, x, y, car_image):
+    def __init__(self, x, y, size):
         self.position = Vector2(x, y)
         self.velocity = Vector2(0.0, 0.0)
+        self.size = size
         self.angle = 0
         self.acceleration = 0
         self.steering_angle = 0
-        self.car_image = car_image
         self.crashed = False
+
+        self.preload_image()
 
     def update(self, dt):
         if self.crashed:
             return
 
+        # apply acceleration to velocity, limit to max
         self.velocity += Vector2(self.acceleration * dt, 0)
+        if self.velocity.x > self.MAX_VELOCITY:
+            self.velocity = Vector2(self.MAX_VELOCITY, 0)
 
         # derivation for turning radius and angular velocity formula can be found in citation at top
         if self.steering_angle is not 0:
@@ -40,6 +46,7 @@ class Car:
         else:
             angular_velocity = 0
 
+        # update position and car angle
         self.position += self.velocity.rotate(-self.angle) * dt
         self.angle += degrees(angular_velocity) * dt
 
@@ -72,8 +79,21 @@ class Car:
         self.acceleration = 0
         self.velocity = 0
 
-    def get_rotated_image(self):
-        return pygame.transform.rotate(self.car_image, self.angle)
+    def get_image(self):
+        # rotated to account for current angle of car
+        return pygame.transform.rotate(self.image, self.angle)
 
     def get_rect(self):
-        return self.get_rotated_image().get_rect()
+        img_rect = self.get_image().get_rect()
+
+        # we must adjust car pos so that we can have the rectangle align properly with middle of image
+        adjusted_car_pos = self.position - Vector2(img_rect.width / 2, img_rect.height / 2)
+        adjusted_rect = pygame.Rect(adjusted_car_pos.x, adjusted_car_pos.y, img_rect.width, img_rect.height)
+
+        return adjusted_rect
+
+    def preload_image(self):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        image_path = os.path.join(current_dir, "images/car.png")
+        self.image = pygame.image.load(image_path)
+        self.image = pygame.transform.scale(self.image, self.size)

@@ -2,7 +2,7 @@ import pygame
 
 
 class Wall:
-    SIZE = 50
+    SIZE = 25
 
     def __init__(self, x, y):
         # subtract SIZE / 2 so that the x & y coords passed in represents the middle of the Wall object
