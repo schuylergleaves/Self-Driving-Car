@@ -1,20 +1,30 @@
 import pygame
+from .mode import Mode
+from .state import State
 from data import config
 from core.car.car import Car
 from core.map.map import Map
 
 
 class Game:
-    def __init__(self):
-        pygame.init()
+    # ----- INITIALIZATION -----
+    def __init__(self, mode):
+        self.mode = mode
+        self.init_game_state()
+        self.init_game_window()
+        self.init_game_objects()
 
-        # setting up pygame window / properties
+    def init_game_state(self):
+        self.state = State.DRIVING
+        self.active = True
+
+    def init_game_window(self):
+        pygame.init()
         self.screen = pygame.display.set_mode(config.SCREEN_SIZE)
         self.text_font = pygame.font.SysFont("Courier", 30)
         self.clock = pygame.time.Clock()
-        self.active = True
 
-        # creating game objects
+    def init_game_objects(self):
         self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE)
         self.map = Map()
 
@@ -58,7 +68,7 @@ class Game:
         mouse_x, mouse_y = pygame.mouse.get_pos()
         self.map.add_wall(mouse_x, mouse_y)
 
-    def add_finish_at_mouse_pos(self):
+    def add_finish_line_at_mouse_pos(self):
         mouse_x, mouse_y = pygame.mouse.get_pos()
         self.map.add_finish_line(mouse_x, mouse_y)
 
@@ -71,6 +81,12 @@ class Game:
 
     # ----- HANDLING INPUT -----
     def handle_input(self):
+        if self.mode == Mode.USER:
+            self.handle_user_input()
+        elif self.mode == Mode.AI:
+            self.handle_ai_input()
+
+    def handle_user_input(self):
         self.handle_user_input_for_game_state()
         self.handle_user_input_for_map()
         self.handle_user_input_for_car()
@@ -90,7 +106,7 @@ class Game:
 
         # middle mouse btn
         if pygame.mouse.get_pressed()[1]:
-            self.add_finish_at_mouse_pos()
+            self.add_finish_line_at_mouse_pos()
 
     def handle_user_input_for_car(self):
         if self.car.has_crashed():
@@ -116,6 +132,8 @@ class Game:
         if pressed[pygame.K_SPACE]:
             self.car.brake(dt)
 
+    def handle_ai_input(self):
+        pass
 
     # ----- DRAWING -----
     def draw(self):
@@ -147,7 +165,8 @@ class Game:
         text = self.text_font.render(text, True, config.WHITE)
         self.screen.blit(text, position)
 
-    def render_ui(self):
+    @staticmethod
+    def render_ui():
         pygame.display.flip()
 
     def limit_fps(self, fps):
