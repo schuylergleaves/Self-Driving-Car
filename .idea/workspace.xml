@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1f72ba5-1ddf-409f-bbb6-7c2c3a8dbdb7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Self Driving Car - Neural Network.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Self Driving Car - Neural Network.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/ai/network_ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/ai/network_ai.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/ai/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/ai/neural_network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/car/car.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/car/car.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/game/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/game/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/config.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,14 +19,45 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/ai/network_ai.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+            <state relative-caret-position="-272">
+              <caret line="26" column="30" lean-forward="true" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/car/car.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
               <folding>
-                <element signature="e#0#414#1" />
-                <element signature="e#637#1213#0" />
-                <element signature="e#660#664#0" />
-                <element signature="e#646#772#0" />
-                <element signature="e#904#924#0" />
+                <element signature="e#201#214#0" expanded="true" />
+                <element signature="e#1140#1385#0" />
+                <element signature="e#1458#2307#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/game/game.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="167" column="39" lean-forward="true" selection-start-line="167" selection-start-column="39" selection-end-line="167" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#270#382#0" />
+                <element signature="e#423#477#0" />
+                <element signature="e#519#699#0" />
+                <element signature="e#2018#2126#0" />
+                <element signature="e#2634#3046#0" />
+                <element signature="e#3081#3133#0" />
+                <element signature="e#3205#3548#0" />
+                <element signature="e#3606#3847#0" />
+                <element signature="e#3898#4111#0" />
+                <element signature="e#4162#4717#0" />
+                <element signature="e#5018#5202#0" />
+                <element signature="e#5237#6203#0" />
               </folding>
             </state>
           </provider>
@@ -51,6 +76,7 @@
     <findStrings>
       <find>is</find>
       <find>self.car</find>
+      <find>all_cars</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -89,9 +115,9 @@
         <option value="$PROJECT_DIR$/core/car/sensor.py" />
         <option value="$PROJECT_DIR$/data/config.py" />
         <option value="$PROJECT_DIR$/core/car/brain/brain.py" />
-        <option value="$PROJECT_DIR$/core/game/game.py" />
-        <option value="$PROJECT_DIR$/core/car/car.py" />
         <option value="$PROJECT_DIR$/core/ai/neural_network.py" />
+        <option value="$PROJECT_DIR$/core/car/car.py" />
+        <option value="$PROJECT_DIR$/core/game/game.py" />
         <option value="$PROJECT_DIR$/core/ai/network_ai.py" />
       </list>
     </option>
@@ -107,7 +133,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -157,6 +182,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -261,7 +287,7 @@
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49858758" visible="true" weight="0.12937294" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49858758" visible="true" weight="0.12937294" />
       <window_info id="Structure" order="1" show_stripe_button="false" sideWeight="0.50141245" side_tool="true" weight="0.24950495" />
       <window_info id="Favorites" order="2" show_stripe_button="false" sideWeight="0.50141245" side_tool="true" weight="0.24950495" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -412,49 +438,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/ai/neural_network.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/game/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1109">
-          <caret line="172" selection-start-line="172" selection-end-line="172" />
+        <state relative-caret-position="120">
+          <caret line="167" column="39" lean-forward="true" selection-start-line="167" selection-start-column="39" selection-end-line="167" selection-end-column="39" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#270#382#0" />
             <element signature="e#423#477#0" />
             <element signature="e#519#699#0" />
+            <element signature="e#2018#2126#0" />
+            <element signature="e#2634#3046#0" />
+            <element signature="e#3081#3133#0" />
             <element signature="e#3205#3548#0" />
             <element signature="e#3606#3847#0" />
             <element signature="e#3898#4111#0" />
             <element signature="e#4162#4717#0" />
+            <element signature="e#5018#5202#0" />
+            <element signature="e#5237#6203#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/car/car.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+        <state relative-caret-position="216">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
           <folding>
             <element signature="e#201#214#0" expanded="true" />
-            <element signature="e#800#1101#0" />
             <element signature="e#1140#1385#0" />
+            <element signature="e#1458#2307#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/ai/neural_network.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/ai/network_ai.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#414#1" />
-            <element signature="e#637#1213#0" />
-            <element signature="e#660#664#0" />
-            <element signature="e#646#772#0" />
-            <element signature="e#904#924#0" />
-          </folding>
+        <state relative-caret-position="-272">
+          <caret line="26" column="30" lean-forward="true" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
         </state>
       </provider>
     </entry>

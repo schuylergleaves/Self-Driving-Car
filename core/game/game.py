@@ -70,8 +70,10 @@ class Game:
 
     # ----- OBJECT MANIPULATION -----
     def update_objects(self):
-        for car in self.cars:
-            car.update(self.delta_time)
+        # AI cars are updated within network AI
+        if self.mode == Mode.USER:
+            self.cars[0].update(self.delta_time)
+
         self.handle_collisions()
 
     def handle_collisions(self):
@@ -163,13 +165,13 @@ class Game:
             car.brake(dt)
 
     def handle_ai_input_for_car(self):
-        if self.ai.all_cars_crashed():
-            self.reset_cars()
-            self.ai.create_new_generation()
-
-
         if self.state is State.DRIVING:
             self.ai.update_cars(self.delta_time)
+
+        if self.ai.all_cars_crashed():
+            self.ai.debug_print_all_scores()
+            self.reset_cars()
+            self.ai.create_new_generation()
 
 
     # ----- DRAWING -----
@@ -177,7 +179,7 @@ class Game:
         self.draw_background()
         self.draw_map()
         self.draw_car()
-        self.draw_sensors()
+        # self.draw_sensors()
         self.draw_text()
 
         self.render_ui()
