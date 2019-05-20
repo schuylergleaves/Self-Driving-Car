@@ -5,6 +5,7 @@ import pygame
 from pygame.math import Vector2
 from math import tan, radians, degrees
 from .state import State
+from .sensor import Sensor
 import os
 
 
@@ -23,14 +24,17 @@ class Car:
     COLLISION_OFFSET_HORIZ  = 0.8
 
     # ----- INITIALIZATION -----
-    def __init__(self, x, y, size):
+    def __init__(self, x, y, size, screen):
         self.position = Vector2(x, y)
         self.velocity = Vector2(0.0, 0.0)
+        self.screen = screen
         self.size = size
         self.angle = 0
         self.acceleration = 0
         self.steering_angle = 0
         self.state = State.RUNNING
+        self.sensors = []
+
         self.preload_image()
 
     def preload_image(self):
@@ -120,3 +124,20 @@ class Car:
                                      rect.width * self.COLLISION_OFFSET_HORIZ,
                                      rect.height * self.COLLISION_OFFSET_VERT)
         return collision_rect
+
+
+    # ----- SENSOR TOOLS FOR AI -----
+    def get_sensor_values(self):
+        self.create_sensors()
+
+        sensor_vals = []
+        for sensor in self.sensors:
+            sensor_vals.append(sensor.get_distance_to_wall())
+
+        return sensor_vals
+
+    def create_sensors(self):
+        self.sensors = []
+        for angle in range(-90, 91, 45):
+            self.sensors.append(Sensor(self.position, angle - self.angle, self.screen))
+

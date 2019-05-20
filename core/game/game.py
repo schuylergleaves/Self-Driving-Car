@@ -26,7 +26,7 @@ class Game:
         self.clock = pygame.time.Clock()
 
     def init_game_objects(self):
-        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE)
+        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE, self.screen)
         self.map = Map()
 
         if self.mode == Mode.AI:
@@ -80,10 +80,10 @@ class Game:
         self.map.add_finish_line(mouse_x, mouse_y)
 
     def reset_car(self):
-        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE)
+        self.car = Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE, self.screen)
 
         # in the case where we have an AI present, we need to update the car it is driving on reset
-        if self.mode is Mode.AI:
+        if self.mode == Mode.AI:
             self.ai.set_currently_active_car(self.car)
 
     def reset_map(self):
@@ -95,13 +95,13 @@ class Game:
     def handle_input(self):
         self.handle_user_input_for_game_state()
 
-        if self.state is State.BUILDING:
+        if self.state == State.BUILDING:
             self.handle_user_input_for_map()
 
-        elif self.state is State.DRIVING:
-            if self.mode is Mode.USER:
+        elif self.state == State.DRIVING:
+            if self.mode == Mode.USER:
                 self.handle_user_input_for_car()
-            elif self.mode is Mode.AI:
+            elif self.mode == Mode.AI:
                 self.handle_ai_input_for_car()
 
     def handle_user_input_for_game_state(self):
@@ -148,12 +148,12 @@ class Game:
             self.car.brake(dt)
 
     def handle_ai_input_for_car(self):
+        if self.state is State.DRIVING:
+            self.ai.update_car(self.delta_time)
+
         if self.car.has_crashed():
             self.reset_car()
             self.ai.increment_generation()
-
-        if self.state is State.DRIVING:
-            self.ai.update_car(self.delta_time)
 
 
     # ----- DRAWING -----
@@ -161,6 +161,7 @@ class Game:
         self.draw_background()
         self.draw_map()
         self.draw_car()
+        self.draw_sensors()
         self.draw_text()
 
         self.render_ui()
@@ -168,6 +169,14 @@ class Game:
 
     def draw_text(self):
         self.display_text("Car Velocity: %s" % self.car.velocity, (5, 10))
+
+        self.display_text("Time Elapsed: %s" % str(pygame.time.get_ticks() / 1000), (400, 10))
+
+        sensor_vals = self.car.get_sensor_values()
+        text_pos = 10
+        for val in sensor_vals:
+            self.display_text("Sensor: %s" % val, (980, text_pos))
+            text_pos += 30
 
         if self.state is State.BUILDING:
             self.display_text("State: BUILDING", (5, 40))
@@ -186,7 +195,7 @@ class Game:
 
     def draw_map(self):
         for wall in self.map.get_walls():
-            pygame.draw.rect(self.screen, config.WHITE, wall.get_rect())
+            pygame.draw.rect(self.screen, config.WALL_COLOR, wall.get_rect())
 
         for finish_line in self.map.get_finish_lines():
             pygame.draw.rect(self.screen, config.BLUE, finish_line.get_rect())
@@ -197,8 +206,12 @@ class Game:
     def draw_background(self):
         self.screen.fill(config.GREY)
 
+    def draw_sensors(self):
+        for sensor in self.car.sensors:
+            pygame.draw.line(self.screen, config.SENSOR_LINE_COLOR, self.car.position, (sensor.get_hit_point()))
+
     def display_text(self, text, position):
-        text = self.text_font.render(text, True, config.WHITE)
+        text = self.text_font.render(text, True, config.BLACK)
         self.screen.blit(text, position)
 
     @staticmethod
