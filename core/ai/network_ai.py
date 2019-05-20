@@ -1,8 +1,4 @@
 """
-Version 1 of Neural Network AI
-This AI will utilize a neural network to attempt to maneuver along a racetrack.
-It will only focus on turning the wheel, as I will have the velocity limited around 200
-
 AI Inputs:
     5 sensors which each give a distance to a wall (between 0 and 100), or return 100 if there are no walls nearby
 
@@ -12,43 +8,41 @@ Possible AI Actions:
     2 - Steer Right
 
 """
-from.neural_network import NeuralNetwork
+import numpy as np
 
 
 class NetworkAI:
-    def __init__(self, car):
-        self.neural_network = NeuralNetwork()
-        self.car = None
-        self.set_currently_active_car(car)
-        self.generation = 0
+    def __init__(self, car_list):
+        self.cars = car_list
+        self.generation_num = 0
 
-    def update_car(self, dt):
-        # limits velocity to ~200
-        if self.car.velocity.x < 200:
-            self.car.accelerate(dt)
-        else:
-            self.car.brake(dt)
+    def update_cars(self, delta_time):
+        for car in self.cars:
+            # limits velocity to ~200
+            if car.velocity.x < 200:
+                car.accelerate(delta_time)
+            else:
+                car.brake(delta_time)
 
-        # retrieve all necessary input vals for neural network
-        sensor_values   = self.car.get_sensor_values()
-        car_has_crashed = self.car.has_crashed()
+            rand = np.random.randint(0, 3)
+            if rand == 0:
+                car.no_steering()
+            elif rand == 1:
+                car.steer_left(delta_time)
+            elif rand == 2:
+                car.steer_right(delta_time)
 
-        action_index = self.neural_network.get_action(sensor_values, car_has_crashed)
-        self.perform_action(action_index)
+    def create_new_generation(self):
+        pass
 
-    def perform_action(self, action_index):
-        if action_index == 0:
-            self.car.no_steering()
-        elif action_index == 1:
-            self.car.steer_left()
-        elif action_index == 2:
-            self.car.steer_right()
+    def all_cars_crashed(self):
+        for car in self.cars:
+            if car.has_crashed() is False:
+                return False
 
-    def set_currently_active_car(self, car):
-        self.car = car
+        return True
 
-    def get_generation(self):
-        return self.generation
+    def set_new_car_list(self, car_list):
+        self.cars = car_list
 
-    def increment_generation(self):
-        self.generation += 1
+

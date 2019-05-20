@@ -47,7 +47,7 @@ class Car:
     # ----- PHYSICS / ACTIONS -----
     def update(self, dt):
         if self.state is not State.RUNNING:
-            self.velocity = 0
+            self.velocity = Vector2(0.0, 0.0)
             self.acceleration = 0
             return
 
@@ -57,7 +57,7 @@ class Car:
             self.velocity = Vector2(self.MAX_VELOCITY, 0)
 
         # derivation for turning radius and angular velocity formula can be found in citation at top
-        if self.steering_angle is not 0:
+        if self.steering_angle != 0:
             turning_radius = self.CHASSIS_LENGTH / tan(radians(self.steering_angle))
             angular_velocity = self.velocity.x / turning_radius
         else:
