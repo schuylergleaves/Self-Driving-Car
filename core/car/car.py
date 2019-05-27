@@ -3,6 +3,7 @@
 # ----------------------------------------------------------------
 import pygame
 from pygame.math import Vector2
+import numpy as np
 from math import tan, radians, degrees
 from .state import State
 from .sensor import Sensor
@@ -12,9 +13,9 @@ import os
 class Car:
     # constants - car properties
     MAX_ACCELERATION   = 80.0
-    MAX_STEERING_ANGLE = 30
+    MAX_STEERING_ANGLE = 15
     MAX_VELOCITY       = 500
-    CHASSIS_LENGTH     = 4
+    CHASSIS_LENGTH     = 20
 
     # constants - physics modifiers
     ACCELERATION_MODIFIER   = 30.0
@@ -34,6 +35,9 @@ class Car:
         self.steering_angle = 0
         self.state = State.RUNNING
         self.sensors = []
+        self.neural_network = None
+        self.checkpoint_position = (999, 999)
+        self.passed_checkpoint = False
 
         self.preload_image()
 
@@ -88,6 +92,8 @@ class Car:
     def brake(self, dt):
         self.velocity.x = max(0, self.velocity.x - self.BRAKE_MODIFIER * dt)
 
+    def set_position(self, position):
+        self.position = position
 
     # ----- HANDLING STATE -----
     def has_crashed(self):
@@ -98,9 +104,17 @@ class Car:
 
     def crash(self):
         self.state = State.CRASHED
+        self.velocity = Vector2(0.0, 0.0)
+        self.acceleration = 0
 
     def finish(self):
         self.state = State.FINISHED
+
+    def reset_state(self):
+        self.state = State.RUNNING
+        self.angle = 0
+        self.passed_checkpoint = False
+
 
 
     # ----- GRAPHICS -----
@@ -126,7 +140,7 @@ class Car:
         return collision_rect
 
 
-    # ----- SENSOR TOOLS FOR AI -----
+    # ----- AI TOOLS -----
     def get_sensor_values(self):
         self.create_sensors()
 
@@ -141,3 +155,26 @@ class Car:
         for angle in range(-90, 91, 45):
             self.sensors.append(Sensor(self.position, angle - self.angle, self.screen))
 
+    def set_neural_network(self, neural_network):
+        self.neural_network = neural_network
+
+    def get_neural_network(self):
+        return self.neural_network
+
+    def set_checkpoint_position(self, position):
+        self.checkpoint_position = position
+
+    def get_distance_to_checkpoint(self):
+        (x1, y1) = self.checkpoint_position
+        (x2, y2) = self.position
+        dist = np.sqrt(np.square(x2 - x1) + np.square(y2 - y1))
+        self.determine_if_passed_checkpoint(dist)
+
+        return dist
+
+    def determine_if_passed_checkpoint(self, dist):
+        if dist < 30:
+            self.passed_checkpoint = True
+
+    def has_passed_checkpoint(self):
+        return self.passed_checkpoint

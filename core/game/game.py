@@ -5,6 +5,7 @@ from data import config
 from core.car.car import Car
 from core.map.map import Map
 from core.ai.network_ai import NetworkAI
+from pygame import Vector2
 
 
 class Game:
@@ -70,9 +71,8 @@ class Game:
 
     # ----- OBJECT MANIPULATION -----
     def update_objects(self):
-        # AI cars are updated within network AI
-        if self.mode == Mode.USER:
-            self.cars[0].update(self.delta_time)
+        for car in self.cars:
+            car.update(self.delta_time)
 
         self.handle_collisions()
 
@@ -91,15 +91,16 @@ class Game:
         mouse_x, mouse_y = pygame.mouse.get_pos()
         self.map.add_finish_line(mouse_x, mouse_y)
 
-    def reset_cars(self):
-        self.cars = []
+    def add_check_point_at_mouse_pos(self):
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        self.map.add_check_point(mouse_x, mouse_y)
+        for car in self.cars:
+            car.set_checkpoint_position((mouse_x, mouse_y))
 
-        if self.mode == Mode.USER:
-            self.cars.append(Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE, self.screen))
-        elif self.mode == Mode.AI:
-            for i in range(0, config.POPULATION_SIZE):
-                self.cars.append(Car(config.CAR_STARTING_X, config.CAR_STARTING_Y, config.CAR_SIZE, self.screen))
-            self.ai.set_new_car_list(self.cars)
+    def reset_cars(self):
+        for car in self.cars:
+            car.set_position(Vector2(config.CAR_STARTING_X, config.CAR_STARTING_Y))
+            car.reset_state()
 
     def reset_map(self):
         self.map = Map()
@@ -138,6 +139,9 @@ class Game:
         if pygame.mouse.get_pressed()[1]:
             self.add_finish_line_at_mouse_pos()
 
+        if pygame.mouse.get_pressed()[2]:
+            self.add_check_point_at_mouse_pos()
+
     def handle_user_input_for_car(self):
         car = self.cars[0]
 
@@ -169,7 +173,7 @@ class Game:
             self.ai.update_cars(self.delta_time)
 
         if self.ai.all_cars_crashed():
-            self.ai.debug_print_all_scores()
+            # self.ai.print_scores()
             self.reset_cars()
             self.ai.create_new_generation()
 
@@ -217,6 +221,9 @@ class Game:
 
         for finish_line in self.map.get_finish_lines():
             pygame.draw.rect(self.screen, config.BLUE, finish_line.get_rect())
+
+        for check_point in self.map.get_check_points():
+            pygame.draw.rect(self.screen, config.RED, check_point.get_rect())
 
     def draw_car(self):
         for car in self.cars:

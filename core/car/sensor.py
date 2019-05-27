@@ -3,7 +3,7 @@ from data import config
 
 
 class Sensor:
-    MAX_RANGE = 999
+    MAX_RANGE = 200
 
     def __init__(self, position, angle, screen):
         self.position = position
