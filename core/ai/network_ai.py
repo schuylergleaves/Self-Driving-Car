@@ -106,6 +106,7 @@ class NetworkAI:
 
                 car.set_neural_network(NeuralNetwork(new_weights))
 
+                # DEBUG
                 print("\nMUTATED NETWORK")
                 print("Old Network Weights: " + str(best_nn_weights))
                 print("New Network Weights: " + str(new_weights))
