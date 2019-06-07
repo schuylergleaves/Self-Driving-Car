@@ -1,5 +1,6 @@
-Current Tasks
-    Create 5 sensors which can inform us of data about car's distance to nearby objects
+TODO:
+    Create a readme with examples
+    Clean up code for readability and good coding practices
 
 Objective
     This project will initially be a top down driving simulator, where you must stay in between the lines of the road,

@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1f72ba5-1ddf-409f-bbb6-7c2c3a8dbdb7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/core/util/random.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/car.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/ai/network_ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/ai/network_ai.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/ai/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/ai/neural_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/car/car.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/car/car.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/game/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/game/game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/game/state.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/game/state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/map/entities/check_point.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/map/map.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/map/map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/overview" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/overview" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,29 +27,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/ai/network_ai.py">
+        <entry file="file://$PROJECT_DIR$/documentation/overview">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="95" column="29" lean-forward="true" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="29" />
-              <folding>
-                <element signature="e#215#233#0" expanded="true" />
-                <element signature="e#337#466#0" />
-                <element signature="e#1089#1820#0" />
-                <element signature="e#1881#2059#0" />
-                <element signature="e#2124#2292#0" />
-                <element signature="e#2356#2561#0" />
-                <element signature="e#2608#2698#0" />
-                <element signature="e#3600#3702#0" />
-                <element signature="e#3754#3894#0" />
-                <element signature="e#3948#4064#0" />
-                <element signature="e#4143#4267#0" />
-                <element signature="e#4305#4477#0" />
-                <element signature="e#4515#4565#0" />
-                <element signature="e#4612#4783#0" />
-                <element signature="e#4848#4915#0" />
-                <element signature="e#4957#5071#0" />
-                <element signature="e#5119#5139#0" />
-              </folding>
+            <state relative-caret-position="144">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -58,6 +50,10 @@
       <find>self.car</find>
       <find>all_cars</find>
       <find>reset_cars</find>
+      <find>create_new_gener</find>
+      <find>self.state</find>
+      <find>reset</find>
+      <find>State.Car_S</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -91,25 +87,26 @@
         <option value="$PROJECT_DIR$/core/game/game_mode.py" />
         <option value="$PROJECT_DIR$/core/game/mode.py" />
         <option value="$PROJECT_DIR$/launcher.py" />
-        <option value="$PROJECT_DIR$/core/game/state.py" />
-        <option value="$PROJECT_DIR$/documentation/overview" />
         <option value="$PROJECT_DIR$/core/car/brain/brain.py" />
-        <option value="$PROJECT_DIR$/core/ai/neural_network.py" />
         <option value="$PROJECT_DIR$/core/map/entities/check_point.py" />
-        <option value="$PROJECT_DIR$/core/map/map.py" />
-        <option value="$PROJECT_DIR$/core/game/game.py" />
         <option value="$PROJECT_DIR$/core/car/sensor.py" />
+        <option value="$PROJECT_DIR$/core/map/map.py" />
+        <option value="$PROJECT_DIR$/core/util/random.py" />
+        <option value="$PROJECT_DIR$/core/game/state.py" />
         <option value="$PROJECT_DIR$/data/config.py" />
+        <option value="$PROJECT_DIR$/core/game/game.py" />
+        <option value="$PROJECT_DIR$/core/ai/neural_network.py" />
         <option value="$PROJECT_DIR$/core/car/car.py" />
         <option value="$PROJECT_DIR$/core/ai/network_ai.py" />
+        <option value="$PROJECT_DIR$/documentation/overview" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="18" />
+    <option name="y" value="-17" />
+    <option name="width" value="3000" />
+    <option name="height" value="1120" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -134,6 +131,47 @@
               <item name="core" type="462c0819:PsiDirectoryNode" />
               <item name="ai" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="car" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+              <item name="entities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Self Driving Car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Self Driving Car" type="462c0819:PsiDirectoryNode" />
+              <item name="documentation" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -147,15 +185,15 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\sglea\Desktop\Programming\Active Projects\Self Driving Car - Neural Network\images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\sglea\Desktop\Programming\Active Projects\Self Driving Car\core" />
       <recent name="C:\Users\sglea\Desktop\Programming\Active Projects\Self Driving Car\core\car" />
       <recent name="C:\Users\sglea\Desktop\Programming\Active Projects\Self Driving Car\core\map\entities" />
       <recent name="C:\Users\sglea\Desktop\Programming\Active Projects\Self Driving Car\core\map" />
       <recent name="C:\Users\sglea\Desktop\Programming\Active Projects\Self Driving Car\core\game" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sglea\Desktop\Programming\Active Projects\Self Driving Car - Neural Network\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -244,20 +282,20 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49858758" visible="true" weight="0.18598525" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49858758" visible="true" weight="0.11485775" />
       <window_info id="Structure" order="1" show_stripe_button="false" sideWeight="0.50141245" side_tool="true" weight="0.24950495" />
       <window_info id="Favorites" order="2" show_stripe_button="false" sideWeight="0.50141245" side_tool="true" weight="0.24950495" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32909605" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32827735" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3418079" />
       <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39869988" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49966997" weight="0.32909605" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32909605" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32827735" />
       <window_info anchor="bottom" id="Event Log" order="9" show_stripe_button="false" sideWeight="0.50033003" side_tool="true" weight="0.32909605" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32909605" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32827735" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -295,9 +333,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/math.py" />
     <entry file="file://$PROJECT_DIR$/utils/math_utils.py" />
-    <entry file="file://$PROJECT_DIR$/assets/car.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/game/game_utils.py" />
     <entry file="file://$PROJECT_DIR$/core/game/input_handler.py" />
     <entry file="file://$PROJECT_DIR$/launcher.py">
@@ -310,24 +345,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/car/state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/game/mode.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="17" lean-forward="true" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/game/state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -356,76 +377,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/documentation/overview">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/map/entities/finish_line.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" lean-forward="true" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/map/entities/check_point.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
+        <state relative-caret-position="32">
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/map/map.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/game/game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-22">
-          <caret line="93" column="43" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#297#409#0" />
-            <element signature="e#450#504#0" />
-            <element signature="e#546#726#0" />
-            <element signature="e#769#1273#0" />
-            <element signature="e#1337#1618#0" />
-            <element signature="e#1652#1671#0" />
-            <element signature="e#1761#1811#0" />
-            <element signature="e#1862#1897#0" />
-            <element signature="e#1939#1957#0" />
-            <element signature="e#2036#2131#0" />
-            <element signature="e#2174#2348#0" />
-            <element signature="e#2395#2480#0" />
-            <element signature="e#2534#2626#0" />
-            <element signature="e#2680#2857#0" />
-            <element signature="e#2808#2943#0" />
-            <element signature="e#2978#3030#0" />
-            <element signature="e#3795#4099#0" />
-            <element signature="e#4150#4705#0" />
-            <element signature="e#4754#4985#0" />
-            <element signature="e#5042#5228#0" />
-            <element signature="e#5263#6229#0" />
-            <element signature="e#6263#6645#0" />
-            <element signature="e#6679#6762#0" />
-            <element signature="e#6803#6832#0" />
-            <element signature="e#6870#7042#0" />
-            <element signature="e#7096#7191#0" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/car/sensor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
+        <state relative-caret-position="64">
           <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
           <folding>
             <element signature="e#153#233#0" />
@@ -434,80 +395,119 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/ai/neural_network.py">
+    <entry file="file://$PROJECT_DIR$/core/map/map.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="96">
+          <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/car/car.py">
+    <entry file="file://$PROJECT_DIR$/core/util/random.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
-          <caret line="104" selection-start-line="104" selection-end-line="104" />
-          <folding>
-            <element signature="e#201#214#0" expanded="true" />
-            <element signature="e#820#1241#0" />
-            <element signature="e#1280#1525#0" />
-            <element signature="e#1598#2447#0" />
-            <element signature="e#2487#2586#0" />
-            <element signature="e#2626#2726#0" />
-            <element signature="e#2767#2788#0" />
-            <element signature="e#2829#2936#0" />
-            <element signature="e#2976#3084#0" />
-            <element signature="e#3121#3144#0" />
-            <element signature="e#3179#3247#0" />
-            <element signature="e#3295#3319#0" />
-            <element signature="e#3389#3423#0" />
-            <element signature="e#3461#3496#0" />
-            <element signature="e#3527#3625#0" />
-            <element signature="e#3657#3684#0" />
-            <element signature="e#3721#3809#0" />
-            <element signature="e#3873#3981#0" />
-            <element signature="e#4015#4388#0" />
-            <element signature="e#4432#4786#0" />
-            <element signature="e#4857#5030#0" />
-            <element signature="e#5070#5216#0" />
-            <element signature="e#5276#5312#0" />
-            <element signature="e#5356#5382#0" />
-            <element signature="e#5441#5476#0" />
-            <element signature="e#5528#5731#0" />
-            <element signature="e#5793#5848#0" />
-            <element signature="e#5895#5924#0" />
-          </folding>
+        <state relative-caret-position="128">
+          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/car/state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/game/state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/car.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/unselected_car.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/selected_car.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/ai/neural_network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="12" column="58" lean-forward="true" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+        <state relative-caret-position="208">
+          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/game/game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="109" column="17" selection-start-line="109" selection-start-column="17" selection-end-line="109" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#297#409#0" />
+            <element signature="e#450#504#0" />
+            <element signature="e#546#726#0" />
+            <element signature="e#4359#4833#0" />
+            <element signature="e#4884#5097#0" />
+            <element signature="e#5148#5703#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/car/car.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-191">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+          <folding>
+            <element signature="e#201#214#0" expanded="true" />
+            <element signature="e#1227#1783#0" />
+            <element signature="e#1856#2705#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/ai/network_ai.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="95" column="29" lean-forward="true" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="29" />
+        <state relative-caret-position="304">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
           <folding>
             <element signature="e#215#233#0" expanded="true" />
-            <element signature="e#337#466#0" />
-            <element signature="e#1089#1820#0" />
-            <element signature="e#1881#2059#0" />
-            <element signature="e#2124#2292#0" />
-            <element signature="e#2356#2561#0" />
-            <element signature="e#2608#2698#0" />
-            <element signature="e#3600#3702#0" />
-            <element signature="e#3754#3894#0" />
-            <element signature="e#3948#4064#0" />
-            <element signature="e#4143#4267#0" />
-            <element signature="e#4305#4477#0" />
-            <element signature="e#4515#4565#0" />
-            <element signature="e#4612#4783#0" />
-            <element signature="e#4848#4915#0" />
-            <element signature="e#4957#5071#0" />
-            <element signature="e#5119#5139#0" />
+            <element signature="e#402#496#0" />
+            <element signature="e#574#804#0" />
+            <element signature="e#900#1068#0" />
+            <element signature="e#1147#1271#0" />
+            <element signature="e#1318#1432#0" />
+            <element signature="e#1524#1664#0" />
+            <element signature="e#1727#1910#0" />
+            <element signature="e#1969#2041#0" />
+            <element signature="e#2167#3524#0" />
+            <element signature="e#3590#3812#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/map/entities/finish_line.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/overview">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>

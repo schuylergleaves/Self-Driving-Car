@@ -10,7 +10,7 @@ class NeuralNetwork:
         self.weights = weights
 
     def get_output(self, input_data):
-        normalized_input_data = np.divide(input_data, 999)
+        normalized_input_data = np.divide(input_data, 200)
 
         initial_dot_val = np.dot(normalized_input_data, self.weights)
 
@@ -18,10 +18,8 @@ class NeuralNetwork:
 
         # print("\n\nNEURAL NETWORK OUTPUT")
         # print("Input Data: " + str(normalized_input_data))
-        # print("Weights 1: " + str(self.weights1))
+        # print("Weights 1: " + str(self.weights))
         # print("Initial Dot Val: " + str(initial_dot_val))
-        # print("Layer 1: " + str(layer1))
-        # print("Weights 2: " + str(self.weights2))
         # print("Output: " + str(output))
 
         return output

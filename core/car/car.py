@@ -19,7 +19,7 @@ class Car:
 
     # constants - physics modifiers
     ACCELERATION_MODIFIER   = 30.0
-    STEERING_ANGLE_MODIFIER = 5
+    STEERING_ANGLE_MODIFIER = 10
     BRAKE_MODIFIER          = 300
     COLLISION_OFFSET_VERT   = 0.8
     COLLISION_OFFSET_HORIZ  = 0.8
@@ -36,16 +36,20 @@ class Car:
         self.state = State.RUNNING
         self.sensors = []
         self.neural_network = None
-        self.checkpoint_position = (999, 999)
-        self.passed_checkpoint = False
+        self.selected = False
 
-        self.preload_image()
+        self.preload_images()
 
-    def preload_image(self):
+    def preload_images(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        image_path = os.path.join(current_dir, "../../assets/car.png")
-        self.image = pygame.image.load(image_path)
-        self.image = pygame.transform.scale(self.image, self.size)
+
+        unselected_image_path = os.path.join(current_dir, "../../assets/unselected_car.png")
+        self.unselected_image = pygame.image.load(unselected_image_path)
+        self.unselected_image = pygame.transform.scale(self.unselected_image, self.size)
+
+        selected_image_path = os.path.join(current_dir, "../../assets/selected_car.png")
+        self.selected_image = pygame.image.load(selected_image_path)
+        self.selected_image = pygame.transform.scale(self.selected_image, self.size)
 
 
     # ----- PHYSICS / ACTIONS -----
@@ -95,6 +99,7 @@ class Car:
     def set_position(self, position):
         self.position = position
 
+
     # ----- HANDLING STATE -----
     def has_crashed(self):
         return self.state == State.CRASHED
@@ -113,20 +118,26 @@ class Car:
     def reset_state(self):
         self.state = State.RUNNING
         self.angle = 0
-        self.passed_checkpoint = False
-
+        self.velocity = Vector2(0.0, 0.0)
+        self.acceleration = 0
+        self.selected = False
 
 
     # ----- GRAPHICS -----
     def get_image(self):
         # rotated to account for current angle of car
-        return pygame.transform.rotate(self.image, self.angle)
+        if self.selected:
+            return pygame.transform.rotate(self.selected_image, self.angle)
+        else:
+            return pygame.transform.rotate(self.unselected_image, self.angle)
 
     def get_rect(self):
         img_rect = self.get_image().get_rect()
 
         # we must adjust car pos so that we can have the rectangle align properly with middle of image
         adjusted_car_pos = self.position - Vector2(img_rect.width / 2, img_rect.height / 2)
+
+        # we double size so user can know if car is selected
         adjusted_rect = pygame.Rect(adjusted_car_pos.x, adjusted_car_pos.y, img_rect.width, img_rect.height)
 
         return adjusted_rect
@@ -142,7 +153,7 @@ class Car:
 
     # ----- AI TOOLS -----
     def get_sensor_values(self):
-        self.create_sensors()
+        self.init_sensors()
 
         sensor_vals = []
         for sensor in self.sensors:
@@ -150,7 +161,7 @@ class Car:
 
         return sensor_vals
 
-    def create_sensors(self):
+    def init_sensors(self):
         self.sensors = []
         for angle in range(-90, 91, 45):
             self.sensors.append(Sensor(self.position, angle - self.angle, self.screen))
@@ -160,21 +171,3 @@ class Car:
 
     def get_neural_network(self):
         return self.neural_network
-
-    def set_checkpoint_position(self, position):
-        self.checkpoint_position = position
-
-    def get_distance_to_checkpoint(self):
-        (x1, y1) = self.checkpoint_position
-        (x2, y2) = self.position
-        dist = np.sqrt(np.square(x2 - x1) + np.square(y2 - y1))
-        self.determine_if_passed_checkpoint(dist)
-
-        return dist
-
-    def determine_if_passed_checkpoint(self, dist):
-        if dist < 30:
-            self.passed_checkpoint = True
-
-    def has_passed_checkpoint(self):
-        return self.passed_checkpoint

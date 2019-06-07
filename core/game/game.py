@@ -29,6 +29,7 @@ class Game:
     def init_game_objects(self):
         self.map = Map()
         self.cars = []
+        self.selected_cars = []
 
         # user mode => one car
         if self.mode == Mode.USER:
@@ -48,6 +49,8 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.shutdown()
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    self.select_car_at_mouse_pos()
 
             self.update_internal_game_data()
             self.update_objects()
@@ -78,9 +81,9 @@ class Game:
 
     def handle_collisions(self):
         for car in self.cars:
-            if self.map.collided_wall(car):
+            if self.map.has_collided_wall(car):
                 car.crash()
-            elif self.map.entered_finish_line(car):
+            elif self.map.has_entered_finish_line(car):
                 car.finish()
 
     def add_wall_at_mouse_pos(self):
@@ -91,34 +94,50 @@ class Game:
         mouse_x, mouse_y = pygame.mouse.get_pos()
         self.map.add_finish_line(mouse_x, mouse_y)
 
-    def add_check_point_at_mouse_pos(self):
-        mouse_x, mouse_y = pygame.mouse.get_pos()
-        self.map.add_check_point(mouse_x, mouse_y)
-        for car in self.cars:
-            car.set_checkpoint_position((mouse_x, mouse_y))
-
     def reset_cars(self):
         for car in self.cars:
             car.set_position(Vector2(config.CAR_STARTING_X, config.CAR_STARTING_Y))
             car.reset_state()
 
+    def reset_selected_cars(self):
+        self.selected_cars = []
+
     def reset_map(self):
-        self.map = Map()
+        self.map.reset()
         self.state = State.BUILDING
+
+    def select_car_at_mouse_pos(self):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.state == State.CAR_SELECTION:
+            for car in self.cars:
+                # if we find a car, then we select it and set state as driving to move on with next gen
+                if car.get_rect().collidepoint(mouse_pos):
+                    if car.selected:
+                        self.selected_cars.remove(car)
+                        car.selected = False
+                    else:
+                        self.selected_cars.append(car)
+                        car.selected = True
+                    return
+
+    def crash_all_cars(self):
+        for car in self.cars:
+            car.crash()
 
 
     # ----- HANDLING INPUT -----
     def handle_input(self):
+        # whether mode is AI or User, we must handle input for game state
         self.handle_user_input_for_game_state()
 
         if self.state == State.BUILDING:
             self.handle_user_input_for_map()
 
-        elif self.state == State.DRIVING:
-            if self.mode == Mode.USER:
+        if self.mode == Mode.USER:
+            if self.state == State.DRIVING:
                 self.handle_user_input_for_car()
-            elif self.mode == Mode.AI:
-                self.handle_ai_input_for_car()
+        elif self.mode == Mode.AI:
+            self.handle_ai_input_for_car()
 
     def handle_user_input_for_game_state(self):
         pressed = pygame.key.get_pressed()
@@ -128,7 +147,12 @@ class Game:
         elif pressed[pygame.K_p]:
             self.reset_map()
         elif pressed[pygame.K_RETURN]:
-            self.set_state(State.DRIVING)
+            if self.state == State.CAR_SELECTION and len(self.selected_cars) > 0:
+                self.set_state(State.FINISHED_CAR_SELECTION)
+            else:
+                self.set_state(State.DRIVING)
+        elif pressed[pygame.K_q]:
+            self.crash_all_cars()
 
     def handle_user_input_for_map(self):
         # left click
@@ -138,9 +162,6 @@ class Game:
         # middle mouse btn
         if pygame.mouse.get_pressed()[1]:
             self.add_finish_line_at_mouse_pos()
-
-        if pygame.mouse.get_pressed()[2]:
-            self.add_check_point_at_mouse_pos()
 
     def handle_user_input_for_car(self):
         car = self.cars[0]
@@ -172,10 +193,16 @@ class Game:
         if self.state is State.DRIVING:
             self.ai.update_cars(self.delta_time)
 
-        if self.ai.all_cars_crashed():
-            # self.ai.print_scores()
+            # if all cars crash, we must now select which car did best
+            if self.ai.all_cars_have_crashed():
+                self.set_state(State.CAR_SELECTION)
+
+        # once we finish car selection, we are able to move onto
+        if self.state is State.FINISHED_CAR_SELECTION:
             self.reset_cars()
-            self.ai.create_new_generation()
+            self.ai.create_new_generation(self.selected_cars)
+            self.reset_selected_cars()
+            self.set_state(State.DRIVING)
 
 
     # ----- DRAWING -----
@@ -211,6 +238,12 @@ class Game:
             self.display_text("State: BUILDING", (5, 40))
         elif self.state is State.DRIVING:
             self.display_text("State: DRIVING", (5, 40))
+        elif self.state is State.CAR_SELECTION:
+            self.display_text("State: CAR_SELECTION", (5, 40))
+        elif self.state is State.FINISHED_CAR_SELECTION:
+            self.display_text("State: FINISHED_CAR_SELECTION", (5, 40))
+
+        self.display_text("NUM CARS SELECTED: %s" % len(self.selected_cars), (700, 70))
 
         if self.mode is Mode.AI:
             self.display_text("Generation: %s" % self.ai.generation_num, (5, 70))
@@ -221,9 +254,6 @@ class Game:
 
         for finish_line in self.map.get_finish_lines():
             pygame.draw.rect(self.screen, config.BLUE, finish_line.get_rect())
-
-        for check_point in self.map.get_check_points():
-            pygame.draw.rect(self.screen, config.RED, check_point.get_rect())
 
     def draw_car(self):
         for car in self.cars:
