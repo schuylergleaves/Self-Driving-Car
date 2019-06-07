@@ -44,11 +44,11 @@ class Car:
         current_dir = os.path.dirname(os.path.abspath(__file__))
 
         unselected_image_path = os.path.join(current_dir, "../../assets/unselected_car.png")
-        self.unselected_image = pygame.image.load(unselected_image_path)
+        self.unselected_image = self.load_convert_alpha(unselected_image_path)
         self.unselected_image = pygame.transform.scale(self.unselected_image, self.size)
 
         selected_image_path = os.path.join(current_dir, "../../assets/selected_car.png")
-        self.selected_image = pygame.image.load(selected_image_path)
+        self.selected_image = self.load_convert_alpha(selected_image_path)
         self.selected_image = pygame.transform.scale(self.selected_image, self.size)
 
 
@@ -149,6 +149,10 @@ class Car:
                                      rect.width * self.COLLISION_OFFSET_HORIZ,
                                      rect.height * self.COLLISION_OFFSET_VERT)
         return collision_rect
+
+    def load_convert_alpha(self, image):
+        """ Increases FPS according to https://stackoverflow.com/questions/31169094/why-does-my-simple-pygame-lag """
+        return pygame.image.load(image).convert_alpha()
 
 
     # ----- AI TOOLS -----
